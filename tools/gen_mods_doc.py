@@ -25,16 +25,27 @@ lines = [
     'Generated from `optimization-mods.json` by `tools/gen_mods_doc.py` — edit the '
     'manifest, not this file.',
     '',
+    f"Every mod here was checked against Modrinth for a 1.21.11 Fabric build on "
+    f"**{man.get('verified_on','(unrecorded)')}**. Three candidates were dropped because no "
+    'such build exists, and four resolved to maintained forks — see the bottom of this file.',
+    '',
     f'## Optimization mods added by the build script ({len(on)})',
     '',
 ]
+def block(m):
+    head = f"### {m['name']}  <sub>{SIDE[m.get('side','client')]}</sub>"
+    body = [head, '']
+    if m.get('verified'):
+        body += [f"Verified: **{m['verified']}**", '']
+    return body + [m['reason'], '']
+
 for m in on:
-    lines += [f"### {m['name']}  <sub>{SIDE[m.get('side','client')]}</sub>", '', m['reason'], '']
+    lines += block(m)
 
 lines += [f'## Shipped but disabled ({len(off)})', '',
           'Present in `mods/` with a `.disabled` suffix. Rename to remove the suffix to turn one on.', '']
 for m in off:
-    lines += [f"### {m['name']}  <sub>{SIDE[m.get('side','client')]}</sub>", '', m['reason'], '']
+    lines += block(m)
 
 carried, disabled_base = [], []
 for f in idx['files']:
@@ -63,7 +74,16 @@ if rp:
               'so your keybinds, sensitivity and resource pack order stay exactly as they are. '
               'Turn them on in Options → Resource Packs.']
 
-lines += ['', '## Removed', '',
+lines += ['', '## Dropped: no 1.21.11 Fabric build', '',
+          '- **Memory Leak Fix** — nothing past 1.20.4. ModernFix-mVUS covers most of the same ground.',
+          '- **Faster Random** — project archived at 1.21.1.',
+          '- **Let Me Despawn** — nothing past 1.21.9.', '']
+lines += ['## Resolved to a maintained fork', '',
+          '- **ModernFix** → **ModernFix-mVUS**: upstream stops at 1.21.1.',
+          '- **Cull Less Leaves** → **Cull Fewer Leaves**: upstream stops at 1.21.1.',
+          '- **Enhanced Block Entities** → **Better Block Entities**: upstream stops at 1.21.4.',
+          '- **Noisium** → **NoisiumForked**: upstream has no 1.21.11 build.', '']
+lines += ['## Removed', '',
           '- **ClickCrystals** — an automation client, not a performance mod, and a ban risk '
           'on any server that checks. It was already disabled in your pack.',
           '- **Meteor, Xenon, Prestige, Nova, Marlowww, zerio, glazed, 4e Client+** — cheat '

@@ -6,7 +6,10 @@ A maximum-FPS Crystal PvP pack built on top of your existing
 > **Ryzen 7 3700X · GeForce RTX 2060 Super · 16 GB RAM**
 
 It keeps every PvP and quality-of-life mod you were already running, at the exact
-versions you had, and adds 18 optimization mods plus hand-tuned configs on top.
+versions you had, and adds 15 optimization mods plus hand-tuned configs on top.
+
+**Every mod was individually checked against Modrinth for a 1.21.11 Fabric
+build** — see [Version compatibility](#version-compatibility).
 
 ## Quick start
 
@@ -19,20 +22,23 @@ proves the format is good before you add anything.
 
 **Step 2 — build the full pack with all the optimization mods.**
 
-Open PowerShell in this folder and run:
+**Double-click `BUILD-PACK.bat`.** That's it — it handles PowerShell's execution
+policy for you and prints what it's doing.
+
+If you'd rather run it yourself:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools\build-pack.ps1
 ```
 
-or, if you have Python:
+or with Python:
 
 ```bash
 python tools/build_pack.py
 ```
 
-That writes `dist/FPS_Modpack_Optimized_2.0.0.mrpack`. Import that one and
-delete the base instance.
+Any of these writes `dist/FPS_Modpack_Optimized_2.0.0.mrpack`. Import that one
+and delete the base instance.
 
 **Step 3 — do the tuning.** Read **[docs/TUNING.md](docs/TUNING.md)**. The JVM
 flags and the BIOS memory setting in there are worth more FPS than several of
@@ -60,17 +66,17 @@ from your own pack — is already baked into `pack/modrinth.index.json`.
 See **[docs/MODS.md](docs/MODS.md)** for every mod and why it's there. The short
 version:
 
-- **Lithium** — the big one for your use case. Explosion raycasting is exactly
+- **Lithium** (0.21.1) — the big one for your use case. Explosion raycasting is exactly
   what runs when a crystal pops, and Lithium makes it far cheaper. This is what
   stops your frame times collapsing in a four-way crystal fight.
-- **Entity Culling · More Culling · Cull Less Leaves** — stop drawing things you
+- **Entity Culling · More Culling · Cull Fewer Leaves** — stop drawing things you
   can't see. Your 3700X has spare cores to do the raycasts on.
-- **FerriteCore · ModernFix · Memory Leak Fix** — memory. On 16 GB this is what
-  keeps hour three feeling like hour one.
-- **ScalableLux · C2ME · Noisium · Alternate Current** — chunk loading, lighting
-  and worldgen. The last three only matter in singleplayer.
-- **BadOptimizations · Faster Random · ThreadTweak · Enhanced Block Entities ·
-  Dynamic FPS · Language Reload** — an assortment of smaller, safe wins.
+- **FerriteCore · ModernFix-mVUS** — memory. On 16 GB this is what keeps hour
+  three feeling like hour one.
+- **ScalableLux · C2ME · NoisiumForked · Alternate Current** — chunk loading,
+  lighting and worldgen. The last three only matter in singleplayer.
+- **BadOptimizations · ThreadTweak · Better Block Entities · Dynamic FPS ·
+  Language Reload** — an assortment of smaller, safe wins.
 - **Nvidium, Exordium and spark ship disabled** on purpose — see MODS.md for
   what each costs you.
 
@@ -90,9 +96,38 @@ Tuned configs (`pack/overrides/config/`):
 Your `options.txt` is deliberately **not** included, so your keybinds,
 sensitivity and resource pack order are untouched.
 
+## Version compatibility
+
+Checked on **2026-09-25**, one project at a time. Confirmed versions are recorded
+per mod in [docs/MODS.md](docs/MODS.md) and in `optimization-mods.json`.
+
+**Four mods are dead upstream and now resolve to their maintained forks:**
+
+| Was | Now | Why |
+|---|---|---|
+| ModernFix | **ModernFix-mVUS** 5.21.0 | upstream stops at 1.21.1 |
+| Cull Less Leaves | **Cull Fewer Leaves** 1.1.1 | upstream stops at 1.21.1 |
+| Enhanced Block Entities | **Better Block Entities** 1.3.0-rc.1 | upstream stops at 1.21.4 |
+| Noisium | **NoisiumForked** 2.8.3 | upstream has no 1.21.11 build |
+
+**Three mods were dropped — no 1.21.11 Fabric build exists:**
+
+- **Memory Leak Fix** — nothing past 1.20.4. ModernFix-mVUS covers most of it.
+- **Faster Random** — project archived at 1.21.1.
+- **Let Me Despawn** — nothing past 1.21.9.
+
+**One caveat:** Better Block Entities' 1.21.11 builds are release candidates, so
+it is the least battle-tested mod in the pack. If chests or signs render oddly,
+disable that one first.
+
+The build script also re-checks at run time and prints `no fabric build for
+1.21.11` for anything that has since fallen behind, so this stays honest as
+versions move.
+
 ## Layout
 
 ```
+BUILD-PACK.bat             double-click this to build the full pack
 optimization-mods.json     the mod list — edit this, then re-run the build
 pack/
   modrinth.index.json      your 36 verified files

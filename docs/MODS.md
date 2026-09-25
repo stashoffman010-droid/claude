@@ -2,77 +2,97 @@
 
 Minecraft 1.21.11 / fabric. Generated from `optimization-mods.json` by `tools/gen_mods_doc.py` — edit the manifest, not this file.
 
-## Optimization mods added by the build script (18)
+Every mod here was checked against Modrinth for a 1.21.11 Fabric build on **2026-09-25**. Three candidates were dropped because no such build exists, and four resolved to maintained forks — see the bottom of this file.
+
+## Optimization mods added by the build script (15)
 
 ### Lithium  <sub>client + server</sub>
+
+Verified: **0.21.1 (1.21.11 / fabric)**
 
 Rewrites game logic: mob AI, collisions, pathfinding and explosion raycasts. The single biggest win for crystal PvP, because popping a crystal is explosion math and Lithium makes it dramatically cheaper.
 
 ### FerriteCore  <sub>client + server</sub>
 
+Verified: **8.2.0-fabric (1.21.11 / fabric)**
+
 Cuts blockstate and model memory by roughly 30-50%. Important on 16GB, where you can only spare ~6GB of heap.
 
-### ModernFix  <sub>client + server</sub>
+### ModernFix-mVUS  <sub>client + server</sub>
 
-Large bundle of memory, startup and render fixes; dynamic resource loading cuts RAM further.
+Verified: **5.21.0 (1.21.11 / fabric)**
+
+Large bundle of memory, startup and render fixes; dynamic resource loading cuts RAM further. Upstream ModernFix stops at 1.21.1; mVUS is the maintained fork that carries it to 1.21.11.
 
 ### Entity Culling  <sub>client only</sub>
+
+Verified: **1.10.2 (1.21.11 / fabric)**
 
 Async raycasting on spare 3700X cores to skip rendering and ticking entities you cannot actually see.
 
 ### More Culling  <sub>client only</sub>
 
+Verified: **1.6.1 (1.21.11 / fabric)**
+
 Extends culling to block entities, item frames and leaves that Sodium alone still draws.
 
 ### BadOptimizations  <sub>client only</sub>
+
+Verified: **2.4.1 (1.21.11 / fabric)**
 
 Dozens of small, safe render and tick optimizations vanilla leaves on the table.
 
 ### ThreadTweak  <sub>client + server</sub>
 
+Verified: **0.1.8 (1.21.11 / fabric)**
+
 Tunes worker thread counts and priorities. Your 8c/16t 3700X has cores to spare; this stops them fighting the render thread.
 
 ### Dynamic FPS  <sub>client only</sub>
 
+Verified: **3.11.2 (1.21.11 / fabric)**
+
 Throttles the game when alt-tabbed, so background CPU/GPU goes back to the foreground.
 
-### Memory Leak Fix  <sub>client + server</sub>
+### Cull Fewer Leaves  <sub>client only</sub>
 
-Plugs known client memory leaks that turn into GC stutter over a long session.
+Verified: **1.1.1 (1.21.11 / fabric)**
 
-### Faster Random  <sub>client + server</sub>
+Culls interior leaf faces. Large win in any forest. Cull Less Leaves stopped at 1.21.1; Cull Fewer Leaves is its continuation.
 
-Swaps java.util.Random for a faster generator. Touches almost every hot path in the game.
+### Better Block Entities  <sub>client only</sub>
 
-### Cull Less Leaves  <sub>client only</sub>
+Verified: **1.3.0-rc.1+1.21.11 (1.21.11 / fabric)**
 
-Culls interior leaf faces. Large win in any forest.
-
-### Enhanced Block Entities  <sub>client only</sub>
-
-Renders chests, signs and beds as fast static models instead of per-frame block entities.
+Renders chests, signs and beds as fast static models instead of per-frame block entities. Enhanced Block Entities stopped at 1.21.4; Better Block Entities is the active equivalent. Its 1.21.11 builds are release candidates, so this is the least battle-tested mod in the pack - disable it first if chests or signs render oddly.
 
 ### ScalableLux  <sub>client + server</sub>
 
+Verified: **0.1.6 (1.21.11 / fabric)**
+
 Multithreaded lighting engine. Smoother chunk loading, fewer light-update hitches.
-
-### Let Me Despawn  <sub>client + server</sub>
-
-Lets useless mobs despawn sooner, cutting entity counts. Singleplayer / your own server.
 
 ### C2ME  <sub>client + server</sub>
 
+Verified: **0.3.6.0.0 (1.21.11 / fabric)**
+
 Parallel chunk loading and generation. Singleplayer only - no effect when you are on someone else's server.
 
-### Noisium  <sub>client + server</sub>
+### NoisiumForked  <sub>client + server</sub>
 
-Faster worldgen. Singleplayer only.
+Verified: **2.8.3+mc1.21.11 (1.21.11 / fabric)**
+
+Faster worldgen. Singleplayer only. Upstream Noisium has no 1.21.11 build; NoisiumForked does.
 
 ### Alternate Current  <sub>client + server</sub>
+
+Verified: **mc1.21.11-1.9.0 (1.21.11 / fabric)**
 
 Much cheaper redstone implementation. Singleplayer only.
 
 ### Language Reload  <sub>client only</sub>
+
+Verified: **1.7.7+1.21.11 (1.21.11 / fabric)**
 
 Faster startup and less RAM held by language data.
 
@@ -82,13 +102,19 @@ Present in `mods/` with a `.disabled` suffix. Rename to remove the suffix to tur
 
 ### spark  <sub>client + server</sub>
 
+Verified: **1.10.156 (1.21.11 / fabric)**
+
 Profiler. Ships disabled. Enable it and run /spark profiler when you want to know what is actually costing you frames instead of guessing.
 
 ### Nvidium  <sub>client only</sub>
 
+Verified: **supports 1.21.6-1.21.11 (1.21.11 / fabric)**
+
 NVIDIA-only terrain renderer that can be a very large win on an RTX 2060 Super. Ships DISABLED because it is reported broken against Sodium 0.8.x on 1.21.11. Try it last, and disable it again if you crash or see missing chunks.
 
 ### Exordium  <sub>client only</sub>
+
+Verified: **supports 1.21.10-1.21.11 (1.21.11 / fabric)**
 
 Draws the HUD at a lower framerate than the world. Free FPS, but it adds visible HUD latency, which is bad for PvP. Ships disabled; enable only if you are still short on frames.
 
@@ -140,6 +166,19 @@ Left disabled, as they were in your pack:
 - PvP Essentials.zip
 
 None are enabled by default — this pack deliberately ships no `options.txt`, so your keybinds, sensitivity and resource pack order stay exactly as they are. Turn them on in Options → Resource Packs.
+
+## Dropped: no 1.21.11 Fabric build
+
+- **Memory Leak Fix** — nothing past 1.20.4. ModernFix-mVUS covers most of the same ground.
+- **Faster Random** — project archived at 1.21.1.
+- **Let Me Despawn** — nothing past 1.21.9.
+
+## Resolved to a maintained fork
+
+- **ModernFix** → **ModernFix-mVUS**: upstream stops at 1.21.1.
+- **Cull Less Leaves** → **Cull Fewer Leaves**: upstream stops at 1.21.1.
+- **Enhanced Block Entities** → **Better Block Entities**: upstream stops at 1.21.4.
+- **Noisium** → **NoisiumForked**: upstream has no 1.21.11 build.
 
 ## Removed
 
