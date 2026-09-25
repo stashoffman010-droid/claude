@@ -137,6 +137,7 @@ tools/
   build_pack.py            same thing in Python
   build_base.py            zips pack/ with no network needed
   gen_mods_doc.py          regenerates docs/MODS.md from the manifest
+  bundle_builder.py        rebuilds dist/FPS-Modpack-Builder.zip
 docs/
   TUNING.md                JVM flags, BIOS, NVIDIA, Windows, in-game settings
   MODS.md                  every mod and why
