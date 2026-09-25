@@ -1,0 +1,8 @@
+{
+  "instantEnabled": true,
+  "seamlessEnabled": true,
+  "instantArmSwing": false,
+  "predictionTimeoutTicks": 12,
+  "colorFakeCrystal": false,
+  "fakeCrystalColor": -43521
+}

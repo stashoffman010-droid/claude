@@ -1,0 +1,4 @@
+# build scratch
+tools/_test-*.ps1
+*.pyc
+__pycache__/

@@ -1,0 +1,38 @@
+{
+  "_comment": [
+    "Optimization mods the build script resolves from Modrinth for Minecraft 1.21.11 / Fabric.",
+    "'slug' is a hint only: if it 404s the script falls back to a Modrinth search on 'name',",
+    "so a renamed project self-heals instead of breaking the build.",
+    "'enabled': false ships the jar as <name>.jar.disabled - present but not loaded.",
+    "Edit this file and re-run the build script to change the pack."
+  ],
+  "minecraft": "1.21.11",
+  "loader": "fabric",
+  "mods": [
+    { "slug": "lithium", "name": "Lithium", "side": "both", "reason": "Rewrites game logic: mob AI, collisions, pathfinding and explosion raycasts. The single biggest win for crystal PvP, because popping a crystal is explosion math and Lithium makes it dramatically cheaper." },
+    { "slug": "ferrite-core", "name": "FerriteCore", "side": "both", "reason": "Cuts blockstate and model memory by roughly 30-50%. Important on 16GB, where you can only spare ~6GB of heap." },
+    { "slug": "modernfix", "name": "ModernFix", "side": "both", "reason": "Large bundle of memory, startup and render fixes; dynamic resource loading cuts RAM further." },
+    { "slug": "entityculling", "name": "Entity Culling", "side": "client", "reason": "Async raycasting on spare 3700X cores to skip rendering and ticking entities you cannot actually see." },
+    { "slug": "moreculling", "name": "More Culling", "side": "client", "reason": "Extends culling to block entities, item frames and leaves that Sodium alone still draws." },
+    { "slug": "badoptimizations", "name": "BadOptimizations", "side": "client", "reason": "Dozens of small, safe render and tick optimizations vanilla leaves on the table." },
+    { "slug": "threadtweak", "name": "ThreadTweak", "side": "both", "reason": "Tunes worker thread counts and priorities. Your 8c/16t 3700X has cores to spare; this stops them fighting the render thread." },
+    { "slug": "dynamic-fps", "name": "Dynamic FPS", "side": "client", "reason": "Throttles the game when alt-tabbed, so background CPU/GPU goes back to the foreground." },
+    { "slug": "memoryleakfix", "name": "Memory Leak Fix", "side": "both", "reason": "Plugs known client memory leaks that turn into GC stutter over a long session." },
+    { "slug": "faster-random", "name": "Faster Random", "side": "both", "reason": "Swaps java.util.Random for a faster generator. Touches almost every hot path in the game." },
+    { "slug": "cull-less-leaves", "name": "Cull Less Leaves", "side": "client", "reason": "Culls interior leaf faces. Large win in any forest." },
+    { "slug": "enhanced-block-entities", "name": "Enhanced Block Entities", "side": "client", "reason": "Renders chests, signs and beds as fast static models instead of per-frame block entities." },
+    { "slug": "scalablelux", "name": "ScalableLux", "side": "both", "reason": "Multithreaded lighting engine. Smoother chunk loading, fewer light-update hitches." },
+    { "slug": "lmd", "name": "Let Me Despawn", "side": "both", "reason": "Lets useless mobs despawn sooner, cutting entity counts. Singleplayer / your own server." },
+    { "slug": "c2me-fabric", "name": "C2ME", "side": "both", "reason": "Parallel chunk loading and generation. Singleplayer only - no effect when you are on someone else's server." },
+    { "slug": "noisium", "name": "Noisium", "side": "both", "reason": "Faster worldgen. Singleplayer only." },
+    { "slug": "alternate-current", "name": "Alternate Current", "side": "both", "reason": "Much cheaper redstone implementation. Singleplayer only." },
+    { "slug": "language-reload", "name": "Language Reload", "side": "client", "reason": "Faster startup and less RAM held by language data." },
+
+    { "slug": "spark", "name": "spark", "side": "both", "enabled": false,
+      "reason": "Profiler. Ships disabled. Enable it and run /spark profiler when you want to know what is actually costing you frames instead of guessing." },
+    { "slug": "nvidium", "name": "Nvidium", "side": "client", "enabled": false,
+      "reason": "NVIDIA-only terrain renderer that can be a very large win on an RTX 2060 Super. Ships DISABLED because it is reported broken against Sodium 0.8.x on 1.21.11. Try it last, and disable it again if you crash or see missing chunks." },
+    { "slug": "exordium", "name": "Exordium", "side": "client", "enabled": false,
+      "reason": "Draws the HUD at a lower framerate than the world. Free FPS, but it adds visible HUD latency, which is bad for PvP. Ships disabled; enable only if you are still short on frames." }
+  ]
+}

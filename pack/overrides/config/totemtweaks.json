@@ -1,0 +1,13 @@
+{
+  "totemSize": 1.0,
+  "popSize": 0.3,
+  "disableEquipAnimation": false,
+  "TotemPopAnimation": true,
+  "animationSpeed": 40,
+  "lockRotationPosition": false,
+  "disableRotations": false,
+  "enableTotemSizeChange": false,
+  "totemSizeChangeSpeed": 1.0,
+  "minTotemSize": 0.5,
+  "maxTotemSize": 1.0
+}

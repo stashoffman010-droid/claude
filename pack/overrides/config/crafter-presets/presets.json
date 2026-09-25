@@ -1,0 +1,46 @@
+{
+  "presets": [
+    {
+      "id": "c2cd5bc7",
+      "name": "Preset 1",
+      "slots": "100100100",
+      "selected": false,
+      "locked": false
+    },
+    {
+      "id": "5b444698",
+      "name": "Preset 2",
+      "slots": "000000000",
+      "selected": false,
+      "locked": false
+    },
+    {
+      "id": "86c14c03",
+      "name": "Preset 3",
+      "slots": "100100100",
+      "selected": false,
+      "locked": false
+    },
+    {
+      "id": "67bc3960",
+      "name": "Preset 4",
+      "slots": "000000000",
+      "selected": false,
+      "locked": false
+    },
+    {
+      "id": "f117ff22",
+      "name": "Preset 5",
+      "slots": "100100100",
+      "selected": false,
+      "locked": false
+    },
+    {
+      "id": "89264362",
+      "name": "Preset 6",
+      "slots": "100100100",
+      "selected": true,
+      "locked": false
+    }
+  ]
+}
