@@ -1,0 +1,35 @@
+name: FrancisAuctionCore
+version: '${project.version}'
+main: com.francis.auction.FrancisAuctionCore
+api-version: '1.21'
+authors: [Francis]
+description: Francis Auction Core - buy and sell items in the community auction house.
+softdepend: [Vault]
+
+commands:
+  ah:
+    description: Open Francis Auction Core.
+    usage: /<command> [sell <price> | search <query> | listings | expired | transactions]
+    aliases: [auction, auctionhouse, francisauction]
+    permission: francisauction.use
+    permission-message: You do not have permission to use this command.
+  auctioncore:
+    description: Francis Auction Core administration.
+    usage: /<command> reload
+    aliases: [fac]
+    permission: francisauction.admin
+    permission-message: You do not have permission to use this command.
+
+permissions:
+  francisauction.use:
+    description: Open the auction house and buy items.
+    default: true
+  francisauction.sell:
+    description: List items for sale.
+    default: true
+  francisauction.admin:
+    description: Manage Francis Auction Core.
+    default: op
+    children:
+      francisauction.use: true
+      francisauction.sell: true

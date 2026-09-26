@@ -1,0 +1,77 @@
+# ==========================================================================
+#  Francis Auction Core
+#  ------------------------------------------------------------------------
+#  Every icon below is a Bukkit Material name, so swapping a button's item
+#  is a one line change - no rebuild of the logic required.
+#  All of the text lives in messages.yml.
+# ==========================================================================
+
+auction:
+  # How many listings a single player may have live at once.
+  max-listings-per-player: 10
+  # How long a listing stays on the market before it expires.
+  # Accepts a duration such as 30m, 12h, 48h, 7d.
+  listing-duration: 48h
+  # How long an unsold item waits in its owner's collection box before the
+  # plugin discards it. 0 keeps expired items until the owner collects them,
+  # which is the safe default - anything else destroys player items.
+  expired-retention: 0
+  min-price: 1.0
+  max-price: 1000000000.0
+  # Percentage of the sale price kept by the server (0 = no tax).
+  sales-tax-percent: 0.0
+
+gui:
+  # Rows of the auction menu. The last row is always the navigation bar,
+  # so 6 rows means 45 listing slots per page.
+  rows: 6
+  # Sound key played when a button is pressed; leave empty for silence.
+  click-sound: "ui.button.click"
+  # Filler item used for the empty parts of the navigation bar.
+  filler: BLACK_STAINED_GLASS_PANE
+
+  # Navigation bar. Slots are counted from 0 and must sit inside the last row.
+  buttons:
+    previous-page:
+      icon: ARROW
+      slot: 45
+    category:
+      icon: CHEST
+      slot: 46
+    sort:
+      icon: COMPARATOR
+      slot: 47
+    search:
+      icon: SPYGLASS
+      slot: 48
+    information:
+      icon: BOOK
+      slot: 49
+    your-items:
+      icon: ENDER_CHEST
+      slot: 50
+    expired-items:
+      icon: BARREL
+      slot: 51
+    refresh-page:
+      icon: CLOCK
+      slot: 52
+    next-page:
+      icon: ARROW
+      slot: 53
+
+  # Icons used by the smaller confirmation menus.
+  dialog:
+    confirm: LIME_STAINED_GLASS_PANE
+    cancel: RED_STAINED_GLASS_PANE
+    collect-all: HOPPER
+    sell-item: GOLD_INGOT
+    transactions: WRITABLE_BOOK
+    back: OAK_DOOR
+
+storage:
+  # YAML is the only backend today; listings are written asynchronously.
+  backend: YAML
+  # Seconds between automatic saves. Set to 0 to write after every change
+  # instead of on a timer. The market is always saved on shutdown.
+  autosave-interval: 300

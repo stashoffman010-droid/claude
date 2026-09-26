@@ -1,0 +1,337 @@
+# ==========================================================================
+#  Francis Auction Core - all player facing text
+#  ------------------------------------------------------------------------
+#  Colours:  &a style legacy codes and &#RRGGBB hex codes both work.
+#            Put the hex code BEFORE &l / &o, because a colour resets
+#            formatting in Minecraft.
+#  Newlines: an empty string "" produces a blank lore line.
+# ==========================================================================
+
+prefix: "&#A6FF27Francis Auction &8» &f"
+no-permission: "&cYou do not have permission to use this command."
+not-player: "&cOnly players can use this command."
+reloaded: "&aFrancis Auction Core reloaded."
+
+# ==========================================================================
+#  GENERAL MESSAGES
+# ==========================================================================
+invalid-price: "&cThat is not a valid number."
+price-too-low: "&cPrice must be at least &a${price}&c."
+price-too-high: "&cPrice cannot exceed &a${price}&c."
+not-holding-item: "&cYou must hold an item to sell it."
+inventory-full: "&cYour inventory is full!"
+not-enough-money: "&cYou do not have enough money to purchase this item."
+no-economy: "&cNo economy plugin is installed, so the auction house is closed."
+auction-not-found: "&cThis auction no longer exists."
+own-listing: "&cYou cannot buy your own item."
+listing-limit-reached: "&cYou already have &e{max}&c listings on the market."
+listing-created: "&aListed &e{item}&a for &e${price}&a."
+listing-cancelled: "&aListing cancelled! You received the item back."
+collected-item: "&aItem collected!"
+item-collected: "&aYou collected your expired &e{item}&a!"
+collected-all: "&aCollected &e{amount}&a expired item(s)."
+no-expired-items: "&cYou have no expired items to collect."
+item-not-found-inventory: "&cItem not found in your inventory (maybe you moved it?)."
+
+# Chat prompts
+search-prompt: "&fType your search in chat, or type &ccancel&f to go back."
+search-cancelled: "&cSearch cancelled or empty."
+price-prompt: "&fType the price in chat, or type &ccancel&f to go back."
+price-cancelled: "&cListing cancelled."
+
+# ==========================================================================
+#  NOTIFICATIONS
+# ==========================================================================
+item-sold: "&#A6FF27{buyer} bought your {item} for ${price}"
+item-sold-offline: "&#A6FF27{buyer} bought your {item} for ${price} while you were away"
+item-purchased: "&aYou purchased &e{item} &afor &e${price}&a!"
+listing-expired: "&cYour listing for &e{item} &chas expired."
+
+# ==========================================================================
+#  MENU TITLES
+# ==========================================================================
+titles:
+  auction: "&8ᴀᴜᴄᴛɪᴏɴ ʜᴏᴜꜱᴇ"
+  auction-search: "&8ꜱᴇᴀʀᴄʜ: &7{query}"
+  confirm-purchase: "&8ᴄᴏɴꜰɪʀᴍ ᴘᴜʀᴄʜᴀꜱᴇ"
+  confirm-listing: "&8ᴄᴏɴꜰɪʀᴍ ʟɪꜱᴛɪɴɢ"
+  your-items: "&8ʏᴏᴜʀ ɪᴛᴇᴍꜱ"
+  transactions: "&8ᴛʀᴀɴꜱᴀᴄᴛɪᴏɴꜱ"
+  expired-items: "&8ᴇxᴘɪʀᴇᴅ ɪᴛᴇᴍꜱ"
+
+# ==========================================================================
+#  NAVIGATION BAR BUTTONS
+#  Every button follows the same shape:
+#      <NAME>            bold, accent coloured
+#      Description       grey
+#      <blank>
+#      Information:      accent coloured
+#      <two white lines>
+#      <blank>
+#      → Click to ...    #FFDF25
+# ==========================================================================
+buttons:
+
+  information:
+    name: "&#A6FF27&lINFORMATION"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#A6FF27Information:"
+      - "&fBuy and sell items in the"
+      - "&fcommunity auction house."
+      - ""
+      - "&#A6FF27$ &fYou are selling: &#A6FF27{listings}/{max}"
+
+  category:
+    name: "&#57C7FF&lITEMS CATEGORY"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#57C7FFCurrently selected:"
+      - "{categories}"
+      - ""
+      - "&#FFDF25→ Click to Change"
+    # {categories} above expands into one line per category, using:
+    entry-selected: "&#57C7FF▶ {category}"
+    entry-unselected: "&7▷ {category}"
+
+  next-page:
+    name: "&#BEFF3D&lNEXT PAGE"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#BEFF3DInformation:"
+      - "&fClick here, to open"
+      - "&fthe upcoming page."
+      - ""
+      - "&#FFDF25→ Click to Continue"
+
+  refresh-page:
+    name: "&#5EFFC0&lREFRESH PAGE"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#5EFFC0Information:"
+      - "&fClick here, to refresh"
+      - "&fthe current page."
+      - ""
+      - "&#FFDF25→ Click to Refresh"
+
+  previous-page:
+    name: "&#FF425F&lPREVIOUS PAGE"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#FF425FInformation:"
+      - "&fClick here, to return"
+      - "&fto the previous page."
+      - ""
+      - "&#FFDF25→ Click to Continue"
+
+  sort:
+    name: "&#FFAE5E&lSORT ORDER"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#FFAE5ECurrently selected:"
+      - "{orders}"
+      - ""
+      - "&#FFDF25→ Click to Change"
+    entry-selected: "&#FFAE5E▶ {order}"
+    entry-unselected: "&7▷ {order}"
+
+  search:
+    name: "&#C58CFF&lSEARCH"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#C58CFFInformation:"
+      - "&fClick here, to look up"
+      - "&fan item by name."
+      - ""
+      - "&#C58CFFSearching: &f{query}"
+      - ""
+      - "&#FFDF25→ Click to Search"
+    no-query: "nothing"
+
+  your-items:
+    name: "&#FFD95E&lYOUR ITEMS"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#FFD95EInformation:"
+      - "&fClick here, to manage"
+      - "&fthe items you are selling."
+      - ""
+      - "&#FFD95E$ &fYou are selling: &#FFD95E{listings}/{max}"
+      - ""
+      - "&#FFDF25→ Click to Continue"
+
+  expired-items:
+    name: "&#FF8A5E&lEXPIRED ITEMS"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#FF8A5EInformation:"
+      - "&fClick here, to collect"
+      - "&fyour unsold items."
+      - ""
+      - "&#FF8A5E$ &fWaiting for you: &#FF8A5E{expired}"
+      - ""
+      - "&#FFDF25→ Click to Continue"
+
+  sell-item:
+    name: "&#A6FF27&lSELL ITEM"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#A6FF27Information:"
+      - "&fClick here, to list the"
+      - "&fitem you are holding."
+      - ""
+      - "&#FFDF25→ Click to Continue"
+
+  transactions:
+    name: "&#57C7FF&lTRANSACTIONS"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#57C7FFInformation:"
+      - "&fClick here, to review"
+      - "&fyour recent trades."
+      - ""
+      - "&#FFDF25→ Click to Continue"
+
+  collect-all:
+    name: "&#5EFFC0&lCOLLECT ALL"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#5EFFC0Information:"
+      - "&fClick here, to collect"
+      - "&fevery expired item."
+      - ""
+      - "&#FFDF25→ Click to Collect"
+
+  confirm:
+    name: "&#A6FF27&lCONFIRM"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#A6FF27Information:"
+      - "&fClick here, to approve"
+      - "&fthis action."
+      - ""
+      - "&#FFDF25→ Click to Confirm"
+
+  cancel:
+    name: "&#FF425F&lCANCEL"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#FF425FInformation:"
+      - "&fClick here, to abort"
+      - "&fthis action."
+      - ""
+      - "&#FFDF25→ Click to Cancel"
+
+  back:
+    name: "&#FF425F&lBACK"
+    lore:
+      - "&7Description"
+      - ""
+      - "&#FF425FInformation:"
+      - "&fClick here, to return"
+      - "&fto the auction house."
+      - ""
+      - "&#FFDF25→ Click to Continue"
+
+  filler:
+    name: " "
+    lore: []
+
+# ==========================================================================
+#  CATEGORY AND SORT LABELS
+#  The keys are internal and must NOT be renamed. Change only the values.
+# ==========================================================================
+categories:
+  ALL: "All"
+  TOOLS: "Tools"
+  WEAPONS: "Weapons"
+  ARMORS: "Armors"
+  FOOD: "Food"
+  MINERALS: "Minerals"
+
+sort-orders:
+  NEWEST: "Newest first"
+  OLDEST: "Oldest first"
+  PRICE_LOW: "Cheapest first"
+  PRICE_HIGH: "Most expensive"
+
+# ==========================================================================
+#  LISTING LORE - appended underneath every item on the market
+# ==========================================================================
+listing:
+  lore:
+    - ""
+    - "&#A6FF27Price: &f${price}"
+    - "&#A6FF27Seller: &f{seller}"
+    - "&#A6FF27Time left: &f{time}"
+    - ""
+    - "&#FFDF25→ Click to Purchase"
+  own-lore:
+    - ""
+    - "&#A6FF27Price: &f${price}"
+    - "&#A6FF27Time left: &f{time}"
+    - ""
+    - "&#FF425F→ Click to Cancel Listing"
+  expired-lore:
+    - ""
+    - "&#FF8A5EExpired: &f{time} ago"
+    - ""
+    - "&#FFDF25→ Click to Collect"
+
+transaction:
+  bought-lore:
+    - ""
+    - "&#A6FF27You bought this from &f{seller}"
+    - "&#A6FF27Price: &f${price}"
+    - "&#A6FF27When: &f{time} ago"
+  sold-lore:
+    - ""
+    - "&#A6FF27{buyer} &#A6FF27bought this from you"
+    - "&#A6FF27Price: &f${price}"
+    - "&#A6FF27When: &f{time} ago"
+
+confirm-purchase:
+  lore:
+    - ""
+    - "&#A6FF27Price: &f${price}"
+    - "&#A6FF27Seller: &f{seller}"
+
+confirm-listing:
+  lore:
+    - ""
+    - "&#A6FF27Price: &f${price}"
+    - "&#A6FF27Duration: &f{time}"
+
+empty:
+  # Shown in the middle of the grid when a page has nothing on it.
+  name: "&#FF425F&lNOTHING HERE"
+  lore:
+    - "&7Description"
+    - ""
+    - "&#FF425FInformation:"
+    - "&fNo listings matched"
+    - "&fyour current filters."
+
+# ==========================================================================
+#  TIME FORMAT
+# ==========================================================================
+time:
+  days: "{days}d"
+  hours: "{hours}h"
+  minutes: "{minutes}m"
+  seconds: "{seconds}s"
+  expired: "expired"
