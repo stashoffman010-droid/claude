@@ -8,10 +8,16 @@ A community auction house for Spigot / Paper 1.21, rebuilt from the old
 * **Commands:** `/ah` (aliases `/auction`, `/auctionhouse`, `/francisauction`),
   `/auctioncore reload` (alias `/fac`)
 
-## Building
+## Building and installing
 
-The jar is built with Maven and needs the Spigot API, which lives on Spigot's
-own repository rather than Maven Central:
+On Windows, open `BUILD-AND-INSTALL.bat`, put your server's plugins folder on
+the `PLUGINS_DIR` line at the top, and double-click it. It builds the jar,
+deletes the old `DonutAuction-1.2.jar` if it finds one, and copies the new
+plugin in.
+
+Otherwise, build by hand — the Spigot API lives on Spigot's own repository
+rather than Maven Central, so the machine doing the build needs to reach
+`hub.spigotmc.org`:
 
 ```
 mvn -f FrancisAuctionCore/pom.xml clean package
@@ -20,6 +26,9 @@ mvn -f FrancisAuctionCore/pom.xml clean package
 The jar lands in `FrancisAuctionCore/target/FrancisAuctionCore-2.0.0.jar`.
 Drop it in `plugins/`, restart, and the plugin writes `config.yml`,
 `messages.yml` and `market.yml` into `plugins/FrancisAuctionCore/`.
+
+Remove the old `DonutAuction` jar first — two auction plugins both claiming
+`/ah` will fight over the command.
 
 Vault plus an economy plugin is required for buying and selling; without it
 the plugin still loads and tells players the auction house is closed.
